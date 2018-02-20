@@ -1,0 +1,10 @@
+#!/bin/bash
+docker stop caddy
+docker rm caddy
+docker build -t caddyalpine .
+docker run --name caddy -p 80:80 -d caddyalpine
+
+# Host file markdown
+caddyalpine --conf /srv/Caddyfile
+sleep .5
+curl http://localhost
